@@ -1,6 +1,7 @@
 const express = require("express");
 const zod = require("zod");
 const router = express.Router();
+const User = require("../models/userModel");
 const { signUpUser, signInUser } = require("../controllers/userController");
 const { authMiddleware } = require("../middlewares/middleware");
 
@@ -36,12 +37,12 @@ router.get("/bulk", async (req, res) => {
     $or: [
       {
         firstName: {
-          $regrex: filter,
+          $regex: filter,
         },
       },
       {
         lastName: {
-          $regrex: filter,
+          $regex: filter,
         },
       },
     ],
